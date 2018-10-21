@@ -1,6 +1,6 @@
-package beetle.Services;
+package beetle.rervices;
 
-import beetle.Entities.Element;
+import beetle.entities.Element;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

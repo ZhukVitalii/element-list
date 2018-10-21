@@ -1,7 +1,7 @@
-package beetle.Controllers;
+package beetle.controllers;
 
-import beetle.Entities.Element;
-import beetle.Services.MainServise;
+import beetle.entities.Element;
+import beetle.rervices.MainServise;
 import beetle.json.UpdateInputJSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

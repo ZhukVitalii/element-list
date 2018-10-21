@@ -1,6 +1,6 @@
-package beetle.Repositories;
+package beetle.repositories;
 
-import beetle.Entities.Element;
+import beetle.entities.Element;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

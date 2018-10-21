@@ -1,4 +1,4 @@
-package beetle.Entities;
+package beetle.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

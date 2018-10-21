@@ -1,7 +1,7 @@
-package beetle.Services;
+package beetle.rervices;
 
-import beetle.Entities.Element;
-import beetle.Repositories.ElementRepository;
+import beetle.entities.Element;
+import beetle.repositories.ElementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
