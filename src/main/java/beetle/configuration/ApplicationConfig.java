@@ -32,8 +32,8 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
 
     @Value("${hibernate.dialect}")
     private String sqlDialect;
-//    @Value("${hbm2ddl.auto}")
-//    private String hbm2dllAuto;
+    @Value("${hbm2ddl.auto}")
+    private String hbm2dllAuto;
 
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
@@ -44,12 +44,12 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory
             (DataSource dataSource, JpaVendorAdapter jpaVendeorAdapter) {
         Properties jpaProp = new Properties();
-//        jpaProp.put("hibernate.hbm2ddl.auto", hbm2dllAuto);//for drop table and create new
+        jpaProp.put("hibernate.hbm2ddl.auto", hbm2dllAuto);//for drop table and create new
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource);
         entityManagerFactory.setJpaVendorAdapter(jpaVendeorAdapter);
         entityManagerFactory.setPackagesToScan("beetle");
-//        entityManagerFactory.setJpaProperties(jpaProp);//for drop table and create new
+        entityManagerFactory.setJpaProperties(jpaProp);//for drop table and create new
         return entityManagerFactory;
     }
 

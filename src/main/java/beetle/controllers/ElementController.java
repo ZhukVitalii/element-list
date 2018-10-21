@@ -1,7 +1,7 @@
 package beetle.controllers;
 
 import beetle.entities.Element;
-import beetle.rervices.MainServise;
+import beetle.rervices.ElementServise;
 import beetle.json.UpdateInputJSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class ElementController {
     @Autowired
-    private MainServise mainServise;
+    private ElementServise elementServise;
 
     @RequestMapping("/")
     public String showElements(Model model) {
@@ -26,17 +26,9 @@ public class ElementController {
         return "index";
     }
 
-//    @RequestMapping("/update-table")
-//    public String updateElements(Model model) {
-//
-//        List<Element> elements = getElements();
-//        elements.sort(Element::compareTo);
-//        model.addAttribute("elements", elements );
-//        return "table";
-//    }
     @RequestMapping(value="/save",  method = RequestMethod.POST)
     public ResponseEntity<Void> saveElement( @RequestBody String text) {
-        mainServise.saveElement(text);
+        elementServise.saveElement(text);
 
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
@@ -44,7 +36,7 @@ public class ElementController {
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public ResponseEntity<Void> updateElement(Model model,UpdateInputJSON input) {
 
-        mainServise.updateElement(input.getId(), input.getText());
+        elementServise.updateElement(input.getId(), input.getText());
 
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
@@ -52,7 +44,7 @@ public class ElementController {
     @RequestMapping(value="/delete/{id}",  method = RequestMethod.POST)
     public ResponseEntity<Void> deleteElement(@PathVariable(value = "id") Long id ) {
 
-        mainServise.deleteElement(id);
+        elementServise.deleteElement(id);
 
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
@@ -60,7 +52,7 @@ public class ElementController {
     @RequestMapping(value="/move-up/{id}",  method = RequestMethod.POST)
     public ResponseEntity<Void> moveUp(@PathVariable(value = "id") Long id ) {
 
-        mainServise.changeOrder(id, true);
+        elementServise.changeOrder(id, true);
 
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
@@ -68,7 +60,7 @@ public class ElementController {
     @RequestMapping(value="/move-down/{id}",  method = RequestMethod.POST)
     public String moveDown(Model model,@PathVariable(value = "id") Long id ) {
 
-        mainServise.changeOrder(id, false);
+        elementServise.changeOrder(id, false);
         List<Element> elements = getElements();
         elements.sort(Element::compareTo);
         elements.get(2).setText("PISKAAAAAAAAAAAA");
@@ -77,7 +69,7 @@ public class ElementController {
     }
 
     private List<Element> getElements(){
-        return mainServise.findAllElements();
+        return elementServise.findAllElements();
     }
 
 }

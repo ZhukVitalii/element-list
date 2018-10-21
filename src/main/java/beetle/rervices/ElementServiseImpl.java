@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class ElementServiseImpl implements MainServise {
+public class ElementServiseImpl implements ElementServise {
     @Autowired
     private ElementRepository elementRepository;
 
@@ -23,7 +23,7 @@ public class ElementServiseImpl implements MainServise {
     @Override
     @Transactional
     public void saveElement(String text) {
-        elementRepository.save(new Element(text, elementRepository.getMaxOrderNo() + 1));
+        elementRepository.save(new Element(text, elementRepository.getMaxOrderNo()!= null ?elementRepository.getMaxOrderNo() + 1 : 1));
     }
 
     @Override

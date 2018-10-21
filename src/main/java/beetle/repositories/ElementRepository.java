@@ -9,7 +9,7 @@ import java.util.List;
 public interface ElementRepository extends JpaRepository<Element,Long> {
 
     @Query("Select max(f.orderNo) from Element f")
-    int getMaxOrderNo();
+    Integer getMaxOrderNo();
 
     Element findElementByOrderNo(int orderNo);
 
